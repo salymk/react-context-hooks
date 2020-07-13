@@ -1,5 +1,5 @@
 import React, { createContext, useState } from 'react';
-import uuid from 'uuid/v1';
+import { v4 as uuidv4 } from 'uuid';
 
 export const BookContext = createContext();
 
@@ -10,16 +10,18 @@ const BookContextProvider = (props) => {
 	]);
 
 	const addBook = (title, author) => {
-		setBooks([...books, { title, author, id: uuid() }]);
+		setBooks([...books, { title, author, id: uuidv4() }]);
 	};
 
 	const removeBook = (id) => {
 		setBooks(books.filter(() => books.id !== id));
 	};
 
-	<BookContext.Provider value={{ books, addBook, removeBook }}>
-		{props.children}
-	</BookContext.Provider>;
+	return (
+		<BookContext.Provider value={{ books, addBook, removeBook }}>
+			{props.children}
+		</BookContext.Provider>
+	);
 };
 
 export default BookContextProvider;
