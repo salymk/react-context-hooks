@@ -1,7 +1,14 @@
 import React from 'react';
+import BookContextProvider from './contexts/BookContext';
 
 function App() {
-	return <div></div>;
+	return (
+		<div>
+			<BookContextProvider>
+				<Navbar />
+			</BookContextProvider>
+		</div>
+	);
 }
 
 export default App;
